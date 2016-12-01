@@ -3,57 +3,28 @@
 public class Vigenere {
 
     static String encode(String s, String password) {
-        StringBuilder ss = new StringBuilder();
-        int[] a = new int [s.length()];
-        int conts = 0;
-        int contp = 0;
-        while(conts < s.length()){
-            if(((int)clear(s).charAt(conts) >= 65) && ((int)clear(s).charAt(conts) <= 90)){
-                a[conts] = arrayS(s)[conts] + arrayP(s,password)[contp];
-                while(a[conts] > 26)
-                    a[conts] -= 26;
-                contp++;
-                ss.append((char)( a[conts] + 64));
-            }else{
-                ss.append(' ');
-            }
-            conts++;
-        }
-        return ss.toString();
-    }
-    static int[] arrayS(String s) {//crea un array con String s
-        int[] a = new int [s.length()];
-        for (int i = 0; i < s.length() ; i++) {
-            a[i] = (int) clear(s).charAt(i) - 64;
-            while(a[i] > 26) {
-                a[i] -= 26;
-            }
-        }
-       return a;
-    }
-    static int[] arrayP(String s, String password){//crea un array con String password
-        int[] a = new int[noSpace(s).length()];
-        for (int i = 0,j = 0; i < a.length; i++) {
-            a[i] = (int) clear(password).charAt(j) - 64;
-                while (a[i] > 26) {
-                    a[i] -= 26;
-                }
-            if(j+1 == password.length()){
+        StringBuilder ss = new StringBuilder(s.length());
+        int ch;
+        int pas;
+        for (int i = 0,j = 0; i < s.length(); i++) {
+            ch = (int) clear(s).charAt(i);
+            if (j == password.length()) {
                 j = 0;
-            }else{
+            }
+            pas = (int) clear(password).charAt(j);
+            if (( ch >= 65) && ( ch <= 90)) {
+                ch -= 64;
+                pas -= 64;
+                ch += pas;
+                while (ch > 26) {
+                    ch -= 26;
+                }
+                ch += 64;
                 j++;
             }
+            ss.append((char) ch);
         }
-        return a;
-    }
-    static String noSpace(String s){// genera String s sin espacios
-        StringBuilder sc = new StringBuilder();
-        char ch;
-        for (int i = 0; i < s.length() ; i++) {
-            ch = s.charAt(i);
-            if(((int)ch >= 65) && ((int)ch <= 122)){sc.append(ch);}
-        }
-        return sc.toString();
+        return ss.toString();
     }
     static String clear(String s) {//limpia los acentos
         StringBuilder sc = new StringBuilder(s.length());
@@ -72,7 +43,28 @@ public class Vigenere {
 
 
     static String decode(String s, String password) {
-        return null;
+        StringBuilder ss = new StringBuilder(s.length());
+        int ch;
+        int pas;
+        for (int i = 0,j = 0; i < s.length(); i++) {
+            ch = (int) clear(s).charAt(i);
+            if (j == password.length()) {
+                j = 0;
+            }
+            pas = (int) clear(password).charAt(j);
+            if (( ch >= 65) && ( ch <= 90)) {
+                ch -= 64;
+                pas -= 64;
+                ch -= pas;
+                while (ch < 1) {
+                    ch += 26;
+                }
+                ch += 64;
+                j++;
+            }
+            ss.append((char) ch);
+        }
+        return ss.toString();
     }
 }
 
