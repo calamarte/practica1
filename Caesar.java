@@ -19,8 +19,7 @@ public class Caesar {
             }
             ss.append((char) ch);
         }
-        s = ss.toString();
-        return s.toUpperCase();
+        return ss.toString().toUpperCase();
     }
 
     static String decypher(String s, int delta) {
@@ -37,8 +36,7 @@ public class Caesar {
             }
                 ss.append((char) ch);
         }
-        s = ss.toString();
-        return s;
+        return ss.toString();
     }
 
 

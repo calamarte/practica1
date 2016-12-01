@@ -4,14 +4,16 @@ public class Vigenere {
 
     static String encode(String s, String password) {
         StringBuilder ss = new StringBuilder(s.length());
+        String S = clear(s);
+        String P = clear(password);
         int ch;
         int pas;
         for (int i = 0,j = 0; i < s.length(); i++) {
-            ch = (int) clear(s).charAt(i);
+            ch = (int) S.charAt(i);
             if (j == password.length()) {
                 j = 0;
             }
-            pas = (int) clear(password).charAt(j);
+            pas = (int) P.charAt(j);
             if (( ch >= 65) && ( ch <= 90)) {
                 ch -= 64;
                 pas -= 64;
@@ -44,14 +46,16 @@ public class Vigenere {
 
     static String decode(String s, String password) {
         StringBuilder ss = new StringBuilder(s.length());
+        String S = clear(s);
+        String P = clear(password);
         int ch;
         int pas;
         for (int i = 0,j = 0; i < s.length(); i++) {
-            ch = (int) clear(s).charAt(i);
+            ch = (int) S.charAt(i);
             if (j == password.length()) {
                 j = 0;
             }
-            pas = (int) clear(password).charAt(j);
+            pas = (int) P.charAt(j);
             if (( ch >= 65) && ( ch <= 90)) {
                 ch -= 64;
                 pas -= 64;
