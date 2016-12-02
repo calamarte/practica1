@@ -2,24 +2,21 @@
 public class Caesar {
     static String cypher(String s, int delta) {
         StringBuilder ss = new StringBuilder(s.length());
+        String S = s.toUpperCase();
         int ch;
         for (int i = 0; i < s.length(); i++) {
-            ch = (int) s.charAt(i);
-            if ((ch >= 65) && (ch <= 122)) {//[65,122]
-                if ((ch >= 97) && (ch <= 122)) {//mas converter [97,122]
-                    ch -= 32;
-                }
-                if ((ch >= 65) && (ch <= 90)) {//cypher [65,90]
+            ch = (int) S.charAt(i);
+            if ((ch >= 65) && (ch <= 90)) {//cypher [65,90]
                     ch += delta;
                     while (ch > 90) {
                         ch = ch - 90;
                         ch = ch + 64;
                     }
-                }
+
             }
             ss.append((char) ch);
         }
-        return ss.toString().toUpperCase();
+        return ss.toString();
     }
 
     static String decypher(String s, int delta) {
