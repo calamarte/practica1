@@ -9,8 +9,8 @@ public class Caesar {
             if ((ch >= 65) && (ch <= 90)) {//cypher [65,90]
                     ch += delta;
                     while (ch > 90) {
-                        ch = ch - 90;
-                        ch = ch + 64;
+                        ch -= 90;
+                        ch += 64;
                     }
 
             }
