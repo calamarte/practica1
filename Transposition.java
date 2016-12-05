@@ -59,13 +59,17 @@ public class Transposition {
         char[][] a = new char [y][dim];
         StringBuilder ss = new StringBuilder();
         int total = y * dim;
+        int ast = total -s.length();
+        for (int i = 0; i < ast ; i++) {
+            a[y-1][dim-1] = '*';
+            dim--;
+        }
         y = 0;
         dim = 0;
-        for (int i = 0; i < total ; i++) {
-            if (i < s.length()) {
-                a[y][dim] = s.charAt(i);
-            }else{
-                a[y][dim] = '*';
+        for (int i = 0,z = 0; i < total ; i++) {
+            if (a[y][dim] != '*') {
+                a[y][dim] = s.charAt(z);
+                z++;
             }
             if (y == a.length - 1) {
                 dim++;
