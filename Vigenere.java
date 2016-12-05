@@ -33,7 +33,7 @@ public class Vigenere {
         char ch;
         for (int i = 0; i < s.length() ; i++) {
             ch = s.toUpperCase().charAt(i);
-            if ((ch == 'Á')  || (ch == 'À')){ch ='A';}
+            if ((ch == 'Á') || (ch == 'À')){ch = 'A';}
             if ((ch == 'É') || (ch == 'È')){ch = 'E';}
             if ((ch == 'Í') || (ch == 'Ì')){ch = 'I';}
             if ((ch == 'Ó') || (ch == 'Ò')){ch = 'O';}

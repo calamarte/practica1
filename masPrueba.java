@@ -4,11 +4,7 @@
 public class masPrueba {
     public static void main(String[] args) {
         double c = 3.5;
-        if (c != (int) c) {
-            c++;
-            System.out.println("lo son "+c+" = "+(int) c);
-        }else{
-            System.out.println("no funciona "+c+" = "+(int) c);
-        }
+        int[] a = new int [3];
+        System.out.println(a[0]);
     }
 }

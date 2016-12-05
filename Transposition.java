@@ -11,7 +11,7 @@ public class Transposition {
             if (i < s.length() ) {
                 a[y][dim] = s.charAt(i);
             }else{
-                a[y][dim] = ' ';
+                a[y][dim] = '*';
             }
             if (dim == a[0].length - 1){
                 y++;
@@ -23,7 +23,9 @@ public class Transposition {
         y = 0;
         dim = 0;
         for (int i = 0; i < total ; i++) {
-            ss.append(a[y][dim]);
+            if (a[y][dim] != '*') {
+                ss.append(a[y][dim]);
+            }
             if (y == a.length - 1) {
                 dim++;
                 y = 0;
@@ -34,8 +36,9 @@ public class Transposition {
         return ss.toString();
     }
     static int  filas (String s, int dim){
+        double S = s.length();//Duda aquí!
         double y;
-        y = s.length()  / dim;
+        y = S / dim;
         if ((int) y != y) {
             y++;
         }
