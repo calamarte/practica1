@@ -55,13 +55,13 @@ public class Transposition {
         int total = y * dim;
         int ast = total -s.length();
         for (int i = 0; i < ast ; i++) {
-            a[y-1][dim-1] = 0;
+            a[y-1][dim-1] = 1;
             dim--;
         }
         y = 0;
         dim = 0;
         for (int i = 0,z = 0; i < total ; i++) {
-            if (a[y][dim] != 0) {
+            if (a[y][dim] != 1) {
                 a[y][dim] = s.charAt(z);
                 z++;
             }
@@ -75,7 +75,7 @@ public class Transposition {
         y = 0;
         dim = 0;
         for (int i = 0; i < total ; i++) {
-            if (a[y][dim] != 0) {
+            if (a[y][dim] != 1) {
                 ss.append(a[y][dim]);
             }
             if (dim == a[0].length - 1) {
