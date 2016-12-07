@@ -3,8 +3,6 @@
  */
 public class masPrueba {
     public static void main(String[] args) {
-        double c = 3.5;
-        int[] a = new int [3];
-        System.out.println(a[0]);
+
     }
 }
