@@ -12,7 +12,10 @@ public class Caesar {
                         ch -= 90;
                         ch += 64;
                     }
-
+                    while (ch < 65) {
+                     ch = 65 - ch;
+                     ch = 91 - ch;
+                    }
             }
             ss.append((char) ch);
         }
@@ -30,6 +33,10 @@ public class Caesar {
                     ch = 65 - ch;
                     ch = 91 - ch;
                 }
+                while (ch > 90) {
+                    ch -= 90;
+                    ch += 64;
+                }
             }
                 ss.append((char) ch);
         }
@@ -39,13 +46,25 @@ public class Caesar {
 
 
     static String magic(String s) {
-        String ss = s;
-        for (int i = 0; i < 26 ; i++) {
-            ss = decypher(s,i);
-            if(ss.contains(" EL ") || ss.contains(" LA ") || ss.contains(" DEL ")) {
-                break;
+        StringBuilder ss = new StringBuilder();
+        int[] abc = new int [26];
+        int ch;
+        int max = -1;
+        int delta = 0;
+        for (int i = 0; i < s.length() ; i++) {
+            ch = s.toUpperCase().charAt(i);
+            if((ch >= 65) && (ch <= 90)){
+                abc[ch - 65]++;
             }
         }
-        return ss;
+        for (int i = 0; i < 26 ; i++) {
+            if(abc[i] > max){
+                max = abc[i];
+                delta = i;
+            }
+        }
+        delta += 65;
+        delta = delta - 69;
+        return decypher(s,delta);
     }
 }

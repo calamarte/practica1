@@ -18,6 +18,7 @@ public class CaesarTest {
                 Caesar.cypher("The Caesar cipher, also known as a shift cipher, is one of the simplest forms of encryption. It is a substitution cipher where each letter in the original message (called the plaintext) is replaced with a letter corresponding to a certain number of letters up or down in the alphabet.", 1500));
 
         assertEquals("Z'OAWQ VO RS GSF QCA SZG RWBSFG, EIS OPOBG RS BSQSGGWHOF-ZC, GS GOD SZ JOZCF EIS HÉ.", Caesar.cypher("L'amic ha de ser com els diners, que abans de necessitar-lo, se sap el valor que té.", 66));
+        assertEquals("LD OHBN DK SZK",Caesar.cypher("Me pico el tal",-1));
     }
 
     @Test
