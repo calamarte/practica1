@@ -9,7 +9,7 @@ public class Transposition {
         int total = y * dim;
         y = 0;
         dim = 0;
-        for (int i = 0; i < total; i++) {
+        for (int i = 0; i < total; i++) {//leo el String por filas y doy valor 0 aquellos que no necesito
             if (i < s.length() ) {
                 a[y][dim] = s.charAt(i);
             }else{
@@ -24,7 +24,7 @@ public class Transposition {
         }
         y = 0;
         dim = 0;
-        for (int i = 0; i < total ; i++) {
+        for (int i = 0; i < total ; i++) {//creo un string por columnas y omito aquellos que tienen valor 0
             if (a[y][dim] != 0) {
                 ss.append(a[y][dim]);
             }
@@ -38,8 +38,8 @@ public class Transposition {
         return ss.toString();
     }
 
-    static int  filas (String s, int dim){
-        double S = s.length();//Duda aquí!
+    static int  filas (String s, int dim){//define el número de filas en función de dim
+        double S = s.length();
         double y;
         y = S / dim;
         if ((int) y != y) {
@@ -54,13 +54,13 @@ public class Transposition {
         StringBuilder ss = new StringBuilder();
         int total = y * dim;
         int ast = total -s.length();
-        for (int i = 0; i < ast ; i++) {
+        for (int i = 0; i < ast ; i++) {// da valor 1 a aquellas que no necesitamos (es 1 y no 0 porque por defecto es 0 y no podía darle valores)
             a[y-1][dim-1] = 1;
             dim--;
         }
         y = 0;
         dim = 0;
-        for (int i = 0,z = 0; i < total ; i++) {
+        for (int i = 0,z = 0; i < total ; i++) {// leo el string por columnas omitiendo aquellas con valor 1
             if (a[y][dim] != 1) {
                 a[y][dim] = s.charAt(z);
                 z++;
@@ -74,7 +74,7 @@ public class Transposition {
         }
         y = 0;
         dim = 0;
-        for (int i = 0; i < total ; i++) {
+        for (int i = 0; i < total ; i++) {//creo un string por filas omitiendo aquellas con valor 1
             if (a[y][dim] != 1) {
                 ss.append(a[y][dim]);
             }
@@ -87,7 +87,6 @@ public class Transposition {
         }
         return ss.toString();
     }
-
 
 
     static String cypher(String s, String key) {

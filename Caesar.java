@@ -49,22 +49,22 @@ public class Caesar {
         StringBuilder ss = new StringBuilder();
         int[] abc = new int [26];
         int ch;
-        int max = -1;
+        int max = 0;
         int delta = 0;
-        for (int i = 0; i < s.length() ; i++) {
+        for (int i = 0; i < s.length() ; i++) {//cuento la cantidad de caracteres iguales del abcedario y los guardo en un array
             ch = s.toUpperCase().charAt(i);
             if((ch >= 65) && (ch <= 90)){
                 abc[ch - 65]++;
             }
         }
-        for (int i = 0; i < 26 ; i++) {
+        for (int i = 0; i < 26 ; i++) {//localizo en el array la posición que tiene la maxima cantidad por consiguiente el caracter
             if(abc[i] > max){
                 max = abc[i];
                 delta = i;
             }
         }
         delta += 65;
-        delta = delta - 69;
+        delta -= 69;//averiguo la distancia que hay entre el caracter y la e
         return decypher(s,delta);
     }
 }
