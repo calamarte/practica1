@@ -150,7 +150,7 @@ public class Transposition {
     static String decypher(String s, String key) {
         int x = key.length();
         int y = filas(s, x);
-        char[][] a = new char[y][x];
+        char[][] a = new char[y +1][x];
         for (int i = 0; i < key.length(); i++) {
             a[0][i] = key.charAt(i);
         }
@@ -158,13 +158,13 @@ public class Transposition {
         int total = y * x;
         int ast = total - s.length();
         for (int i = 0; i < ast; i++) {// da valor 1 a aquellas que no necesitamos (es 1 y no 0 porque por defecto es 0 y no podía darle valores)
-            a[y - 1][x - 1] = 1;
+            a[y][x - 1] = 1;
             x--;
         }
         char[][] aOrder = alphabeticalOrderLite(a);
         y = 1;
         x = 0;
-        for (int i = 0, z = 0; i < total - key.length(); i++) {// leo el string por columnas omitiendo aquellas con valor 1
+        for (int i = 0, z = 0; i < total; i++) {// leo el string por columnas omitiendo aquellas con valor 1
             if (aOrder[y][x] != 1) {
                 aOrder[y][x] = s.charAt(z);
                 z++;
@@ -176,20 +176,18 @@ public class Transposition {
                 y++;
             }
         }
-        System.out.println(Arrays.toString(aOrder[1]));
-        for (int i = 0,k = 1; i < key.length() ; i++,k = 1) {
-            for (int j = 0; j < key.length(); j++) {
-                if (key.charAt(i) == aOrder[0][j]){
-                    while (k != aOrder.length){
-                        if(aOrder[k][j] != 1){
-                            ss.append(a[k][j]);
+        System.out.println(Arrays.deepToString(aOrder));
+        for (int k = 1; k < aOrder.length ; k++) {
+            for (int i = 0; i < key.length(); i++) {
+                for (int j = 0; j < aOrder[0].length; j++) {
+                    if (key.charAt(i) == aOrder[0][j]) {
+                        if(aOrder[k][j] != 1) {
+                            ss.append(aOrder[k][j]);
                         }
-                        k++;
                     }
                 }
             }
         }
-
         return ss.toString();
     }
 
@@ -209,7 +207,12 @@ public class Transposition {
                 j++;
             }
         }
-        System.out.println(Arrays.toString(a[0])+" , "+Arrays.toString(a[a.length-1]));
         return a;
+    }
+
+    static char[][] disorder(char[][] a,String key){
+        char[] save = new char[a.length];
+
+        return null;
     }
 }
