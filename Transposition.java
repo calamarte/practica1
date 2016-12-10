@@ -150,19 +150,24 @@ public class Transposition {
     static String decypher(String s, String key) {
         int x = key.length();
         int y = filas(s, x);
-        char[][] a = new char[y +1][x];
+        char[] KEY = new char[key.length()];
+        char[][] a = new char[y +2][x];
         for (int i = 0; i < key.length(); i++) {
             a[0][i] = key.charAt(i);
+            a[1][i] = (char) (i+2);
+            KEY[i] = (char) (i+2);
         }
         StringBuilder ss = new StringBuilder();
         int total = y * x;
         int ast = total - s.length();
         for (int i = 0; i < ast; i++) {// da valor 1 a aquellas que no necesitamos (es 1 y no 0 porque por defecto es 0 y no podía darle valores)
-            a[y][x - 1] = 1;
+            a[y +1][x - 1] = 1;
             x--;
         }
+        System.out.println(Arrays.deepToString(a));
         char[][] aOrder = alphabeticalOrderLite(a);
-        y = 1;
+        System.out.println(Arrays.deepToString(aOrder));
+        y = 2;
         x = 0;
         for (int i = 0, z = 0; i < total; i++) {// leo el string por columnas omitiendo aquellas con valor 1
             if (aOrder[y][x] != 1) {
@@ -171,16 +176,16 @@ public class Transposition {
             }
             if (y == aOrder.length - 1) {
                 x++;
-                y = 1;
+                y = 2;
             } else {
                 y++;
             }
         }
         System.out.println(Arrays.deepToString(aOrder));
-        for (int k = 1; k < aOrder.length ; k++) {
+        for (int k = 2; k < aOrder.length ; k++) {
             for (int i = 0; i < key.length(); i++) {
                 for (int j = 0; j < aOrder[0].length; j++) {
-                    if (key.charAt(i) == aOrder[0][j]) {
+                    if (KEY[i] == aOrder[1][j]) {
                         if(aOrder[k][j] != 1) {
                             ss.append(aOrder[k][j]);
                         }
@@ -200,6 +205,9 @@ public class Transposition {
                   save =  a[0][j];
                   a[0][j] = a[0][j +1];
                   a[0][j+1] = save;
+                  save = a[1][j];
+                  a[1][j] = a[1][j +1];
+                  a[1][j+1] = save;
                   save = a[a.length-1][j];
                   a[a.length-1][j] = a[a.length-1][j+1];
                   a[a.length-1][j+1] = save;
@@ -208,11 +216,5 @@ public class Transposition {
             }
         }
         return a;
-    }
-
-    static char[][] disorder(char[][] a,String key){
-        char[] save = new char[a.length];
-
-        return null;
     }
 }
